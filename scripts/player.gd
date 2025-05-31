@@ -3,12 +3,17 @@ extends CharacterBody3D
 @export
 var SPEED = 5.0
 
+signal healthChanged
+@export var maxHealth := 100
+var currentHealth := maxHealth
+
+
 @export
 var camera : Camera3D
 
 const JUMP_VELOCITY = 4.5
 
-var gravity = ProjectSettings.get_setting("physics(3d/defaukt_gravity")
+var gravity = ProjectSettings.get_setting("physics(3d/default_gravity")
 
 var is_alive : bool = true
 
@@ -56,10 +61,26 @@ func _physics_process(delta):
 			target_position.y += 1.0  # Adjust this value to point 1 meter above the hit point
 			look_at(target_position)
 	
+	
+func take_damage(amount: int) -> void:
+	currentHealth = max(currentHealth - amount, 0)
+	emit_signal("healthChanged")
+	if currentHealth == 0:
+		die()
+		
+func die():
+	is_alive = false
+	if get_node_or_null("Weapon"):
+		$Weapon.queue_free()
+	if get_node_or_null("MeshInstance3D"):
+		$MeshInstance3D.queue_free()
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
+	#if body.is_in_group("Enemy"):
+	#	is_alive = false
 	if body.is_in_group("Enemy"):
-		is_alive = false
+		take_damage(20)  # Example: take 20 damage on contact
+	
 		
 		if get_node_or_null("Weapon") != null:
 			$Weapon.queue_free()

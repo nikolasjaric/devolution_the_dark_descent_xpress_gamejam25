@@ -22,6 +22,6 @@ func _on_quit_to_main_menu_pressed() -> void:
 	pass # Replace with function body.
 
 
-func _on_exit_game_pressed() -> void:
+func _on_exit_game_pressed():
 	get_tree().quit()
 	pass # Replace with function body.
