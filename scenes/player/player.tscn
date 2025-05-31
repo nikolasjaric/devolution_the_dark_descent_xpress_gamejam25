@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://drd5a26qdc8ye"]
+
+[ext_resource type="Script" uid="uid://c504ubo127s4m" path="res://scripts/player.gd" id="1_8afob"]
+[ext_resource type="Script" uid="uid://ckdt1qt0nqg2c" path="res://scripts/weapon.gd" id="2_dovo2"]
+[ext_resource type="PackedScene" uid="uid://d0ukccn065ir0" path="res://scenes/prefabs/bullet.tscn" id="3_gmlin"]
+[ext_resource type="Texture2D" uid="uid://bxjg8wp6wheuy" path="res://assets/muzzle.png" id="4_lvxji"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_a2pkv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ph54e"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fcby6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ep5ws"]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("4_lvxji")
+emission_enabled = true
+emission = Color(0.915598, 0.455628, 7.70092e-07, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_lvxji"]
+material = SubResource("StandardMaterial3D_ep5ws")
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_8afob")
+SPEED = 9.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 1.2, 0)
+mesh = SubResource("CapsuleMesh_a2pkv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+shape = SubResource("CapsuleShape3D_ph54e")
+
+[node name="Weapon" type="Node3D" parent="." node_paths=PackedStringArray("root_node", "shoot_position")]
+transform = Transform3D(-1.04712, 0, 0, 0, 1.03867, -1.59885e-07, 0, 9.08034e-08, 1.82887, 0, 1.464, 0)
+script = ExtResource("2_dovo2")
+bullet_prefab = ExtResource("3_gmlin")
+root_node = NodePath("..")
+shoot_position = NodePath("ShootPosition")
+shoot_rate = 0.25
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Weapon"]
+transform = Transform3D(-0.272012, -0.00256578, 0, 0.00161892, -0.431105, 0, 0, 0, 1.12366, -0.103, 0, -0.591)
+mesh = SubResource("BoxMesh_fcby6")
+
+[node name="ShootPosition" type="Node3D" parent="Weapon"]
+transform = Transform3D(-0.540859, 0.756466, 0.367734, 0.829672, 0.551669, 0.0854291, -0.138245, 0.351305, -0.925996, -0.079, 0.00499964, -1.164)
+
+[node name="MuzzleFlash" type="Node3D" parent="."]
+transform = Transform3D(0.782524, -0.605105, -0.146637, -0.614536, -0.788461, -0.0258277, -0.0999901, 0.110325, -0.988851, 0.194191, 1.40509, -2.16077)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MuzzleFlash"]
+transform = Transform3D(0.115251, 0.66407, 0.738735, -0.0367099, -0.740335, 0.671236, 0.992659, -0.104479, -0.0609459, -0.1453, -0.1673, 0.482131)
+layers = 17
+mesh = SubResource("QuadMesh_lvxji")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MuzzleFlash"]
+light_color = Color(0.770291, 0.473406, 0, 1)
+light_energy = 5.099
+light_indirect_energy = 2.19
+omni_range = 4.01425
+
+[node name="Timer" type="Timer" parent="MuzzleFlash"]

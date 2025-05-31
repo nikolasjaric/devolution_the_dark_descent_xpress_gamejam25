@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://desgnctojeogj"]
+
+[ext_resource type="Script" uid="uid://jaovfqnrubpv" path="res://scripts/enemy.gd" id="1_vyi2f"]
+[ext_resource type="Script" uid="uid://vacpmbnhaxs0" path="res://scripts/ui_scripts/enemy_ui.gd" id="2_jvnon"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ep5ws"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_taraj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ep5ws"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ep5ws"]
+
+[node name="Enemy" type="CharacterBody3D" groups=["Enemy"]]
+script = ExtResource("1_vyi2f")
+move_speed = 8.0
+initial_health = 45.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ep5ws")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_taraj")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.5
+target_desired_distance = 0.5
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_ep5ws")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_jvnon")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Control"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -29.0
+offset_right = 25.0
+offset_bottom = -21.0
+value = 100.0
+nine_patch_stretch = true
+texture_progress = SubResource("CanvasTexture_ep5ws")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

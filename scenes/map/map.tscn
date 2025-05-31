@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7g07qampm6l3"]
+
+[ext_resource type="PackedScene" uid="uid://drd5a26qdc8ye" path="res://scenes/player/player.tscn" id="1_tqkkf"]
+[ext_resource type="Script" uid="uid://cxuhm1iellcg8" path="res://scripts/camera_spring_arm.gd" id="2_tqkkf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_scl2d"]
+albedo_color = Color(0.607494, 0.302038, 0.414087, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sxf4j"]
+material = SubResource("StandardMaterial3D_scl2d")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tqkkf"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="Floor" type="MeshInstance3D" parent="Map"]
+transform = Transform3D(-54.546, 0, 4.37114e-06, 0, 4.546, 0, -4.76856e-06, 0, -50, 0, -2.31049, 0)
+mesh = SubResource("BoxMesh_sxf4j")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Map/Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Floor/StaticBody3D"]
+shape = SubResource("BoxShape3D_tqkkf")
+
+[node name="Ramp" type="MeshInstance3D" parent="Map"]
+transform = Transform3D(-21.8448, 0.889484, 1.6106e-06, 10.9543, 1.77378, -8.07651e-07, -2.13639e-06, -1.7597e-16, -20.6097, -6.88129, 5.26678, 13.0612)
+mesh = SubResource("BoxMesh_sxf4j")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Map/Ramp"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Ramp/StaticBody3D"]
+shape = SubResource("BoxShape3D_tqkkf")
+
+[node name="Player" parent="." instance=ExtResource("1_tqkkf")]
+
+[node name="CameraSpringArm" type="SpringArm3D" parent="."]
+transform = Transform3D(0.866025, 0.353553, 0.353553, 0, 0.707107, -0.707107, -0.5, 0.612372, 0.612372, 0, 14.5359, 0)
+spring_length = -15.0
+script = ExtResource("2_tqkkf")
+
+[node name="Camera3D" type="Camera3D" parent="CameraSpringArm"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.655564, -0.0997818, -0.748518, -0.693091, -0.313983, 0.648876, -0.299768, 0.944171, 0.136678, 17.8184, 18.8954, 0.197015)
