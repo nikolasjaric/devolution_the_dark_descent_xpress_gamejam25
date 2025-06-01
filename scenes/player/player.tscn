@@ -11,7 +11,7 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_fcby6"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ep5ws"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvxji"]
 transparency = 1
 cull_mode = 2
 albedo_texture = ExtResource("4_lvxji")
@@ -19,7 +19,7 @@ emission_enabled = true
 emission = Color(0.915598, 0.455628, 7.70092e-07, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_lvxji"]
-material = SubResource("StandardMaterial3D_ep5ws")
+material = SubResource("StandardMaterial3D_lvxji")
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_8afob")

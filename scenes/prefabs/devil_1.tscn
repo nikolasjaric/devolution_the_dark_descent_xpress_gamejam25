@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://djr4m4vsoput"]
+
+[ext_resource type="PackedScene" uid="uid://ohl3kqlld2p6" path="res://assets/models/devil/devil-1.glb" id="1_knnur"]
+[ext_resource type="Script" uid="uid://dvlsfhbfkxyht" path="res://scripts/devil_1.gd" id="2_72afx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_knnur"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_72afx"]
+
+[node name="devil-1" instance=ExtResource("1_knnur")]
+script = ExtResource("2_72afx")
+
+[node name="Armature" parent="." index="0"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00608, 0.0408058)
+shape = SubResource("CapsuleShape3D_knnur")
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="." index="3"]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." index="4"]
+
+[node name="Area3D" type="Area3D" parent="." index="5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00309, 0.0299888)
+shape = SubResource("CapsuleShape3D_72afx")
+
+[node name="Control" type="Control" parent="." index="6"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Control" index="0"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true

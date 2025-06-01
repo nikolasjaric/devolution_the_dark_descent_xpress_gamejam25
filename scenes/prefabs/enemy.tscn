@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://desgnctojeogj"]
+[gd_scene load_steps=8 format=3 uid="uid://desgnctojeogj"]
 
 [ext_resource type="Script" uid="uid://jaovfqnrubpv" path="res://scripts/enemy.gd" id="1_vyi2f"]
 [ext_resource type="Script" uid="uid://vacpmbnhaxs0" path="res://scripts/ui_scripts/enemy_ui.gd" id="2_jvnon"]
+[ext_resource type="PackedScene" uid="uid://djr4m4vsoput" path="res://scenes/prefabs/devil_1.tscn" id="3_jvnon"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ep5ws"]
 
@@ -20,6 +21,8 @@ initial_health = 45.0
 shape = SubResource("SphereShape3D_ep5ws")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00715435, 0.138695, 0.128028)
+visible = false
 mesh = SubResource("SphereMesh_taraj")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
@@ -48,5 +51,7 @@ offset_bottom = -21.0
 value = 100.0
 nine_patch_stretch = true
 texture_progress = SubResource("CanvasTexture_ep5ws")
+
+[node name="devil-2" parent="." instance=ExtResource("3_jvnon")]
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

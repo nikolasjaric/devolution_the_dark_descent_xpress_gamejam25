@@ -25,8 +25,8 @@ func _process(delta: float) -> void:
 	if spawn_timer >= spawn_rate:
 		spawn_timer = 0
 		var enemy = enemy_prefab.instantiate()
-		var rand_angle = randf_range(0, PI*2)
-		enemy.position = global_position + (Vector3.RIGHT * sin(rand_angle) + Vector3.FORWARD * cos(rand_angle)) * 20
+		var rand_angle = randf_range(0, PI*1)
+		enemy.position = global_position + (Vector3.RIGHT * sin(rand_angle) + Vector3.FORWARD * cos(rand_angle)) * 3
 		root_node.add_child(enemy)
 	
 	

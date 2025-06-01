@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjci00yawyoot"]
+
+[ext_resource type="PackedScene" uid="uid://0tn204a2tpn5" path="res://assets/models/char/char.glb" id="1_1ys8t"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1ys8t"]
+
+[node name="char" instance=ExtResource("1_1ys8t")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.99863, 0.839149, -3.97572)
+shape = SubResource("CapsuleShape3D_1ys8t")

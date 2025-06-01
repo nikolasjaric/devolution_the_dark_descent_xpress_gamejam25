@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://bl44li5g86c2x"]
+
+[ext_resource type="Script" uid="uid://vacpmbnhaxs0" path="res://scripts/ui_scripts/enemy_ui.gd" id="1_in6li"]
+[ext_resource type="PackedScene" uid="uid://c574n6n2yttdo" path="res://assets/devil-1.glb" id="2_8q3cn"]
+[ext_resource type="PackedScene" uid="uid://desgnctojeogj" path="res://scenes/prefabs/enemy.tscn" id="3_8q3cn"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7tihe"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_64ibq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4fxir"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_mpbu1"]
+
+[node name="Enemy2" type="CharacterBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_7tihe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00715435, 0.138695, 0.128028)
+visible = false
+mesh = SubResource("SphereMesh_64ibq")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.5
+target_desired_distance = 0.5
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_4fxir")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_in6li")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Control"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -29.0
+offset_right = 25.0
+offset_bottom = -21.0
+value = 100.0
+nine_patch_stretch = true
+texture_progress = SubResource("CanvasTexture_mpbu1")
+
+[node name="devil-1" parent="." instance=ExtResource("2_8q3cn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.201441, -0.00465006, 0.011267)
+
+[node name="Enemy" parent="." instance=ExtResource("3_8q3cn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179566, -0.00518817, 0.000791132)

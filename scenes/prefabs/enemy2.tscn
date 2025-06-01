@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://csofx4r6jlbig"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lgw6e"]
+
+[node name="Enemy2" type="CharacterBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_lgw6e")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
