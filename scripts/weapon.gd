@@ -14,6 +14,8 @@ var shoot_position : Node3D
 @export
 var shoot_rate : float
 
+@onready var shooting_audio_player = $ShotSound
+
 var shoot_timer : float
 
 # Called when the node enters the scene tree for the first time.
@@ -30,6 +32,9 @@ func _process(delta):
 		shoot_timer += delta
 	
 	if Input.is_action_pressed("shoot") and shoot_timer >= shoot_rate:
+		
+		shooting_audio_player.play()
+		
 		shoot_timer = 0
 		var bullet = bullet_prefab.instantiate()
 		root_node.add_child(bullet)

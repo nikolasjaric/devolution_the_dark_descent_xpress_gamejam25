@@ -5,6 +5,8 @@ var move_speed : float
 
 @onready var navigation_agent := $NavigationAgent3D as NavigationAgent3D
 
+
+
 var player : Node3D
 
 @export

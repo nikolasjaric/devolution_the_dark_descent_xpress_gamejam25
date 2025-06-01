@@ -1,21 +1,19 @@
-[gd_scene load_steps=24 format=4 uid="uid://drd5a26qdc8ye"]
+[gd_scene load_steps=27 format=4 uid="uid://drd5a26qdc8ye"]
 
 [ext_resource type="Script" uid="uid://c504ubo127s4m" path="res://scripts/player.gd" id="1_8afob"]
 [ext_resource type="Script" uid="uid://ckdt1qt0nqg2c" path="res://scripts/weapon.gd" id="2_dovo2"]
 [ext_resource type="PackedScene" uid="uid://d0ukccn065ir0" path="res://scenes/prefabs/bullet.tscn" id="3_gmlin"]
+[ext_resource type="AudioStream" uid="uid://t8gpvrem41rw" path="res://audio/punch_2.mp3" id="4_0owmy"]
 [ext_resource type="Texture2D" uid="uid://bxjg8wp6wheuy" path="res://assets/muzzle.png" id="4_lvxji"]
-[ext_resource type="Texture2D" uid="uid://dhrp5aedjuj5v" path="res://assets/models/char/char_char-1.png" id="5_p47bc"]
 [ext_resource type="AudioStream" uid="uid://b3ru677lgcgvf" path="res://audio/hod_korak_1.mp3" id="5_p47bc"]
 [ext_resource type="AudioStream" uid="uid://dnppxopag3ejy" path="res://audio/skok_sustanje.mp3" id="6_75vfm"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_a2pkv"]
+[ext_resource type="AudioStream" uid="uid://c2qfgglgqs3k5" path="res://audio/djNitkolas.mp3" id="8_qek5x"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ph54e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pvebu"]
 resource_name = "char"
 cull_mode = 2
-albedo_texture = ExtResource("5_p47bc")
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_75vfm"]
@@ -3415,6 +3413,10 @@ mesh = SubResource("BoxMesh_fcby6")
 [node name="ShootPosition" type="Node3D" parent="Character/Weapon"]
 transform = Transform3D(-0.540859, 0.756466, 0.367734, 0.829672, 0.551669, 0.0854291, -0.138245, 0.351305, -0.925996, -0.079, 0.00499964, -1.164)
 
+[node name="ShotSound" type="AudioStreamPlayer3D" parent="Character/Weapon"]
+stream = ExtResource("4_0owmy")
+volume_db = 4.571
+
 [node name="MuzzleFlash" type="Node3D" parent="Character"]
 transform = Transform3D(0.782524, -0.605105, -0.146637, -0.614536, -0.788461, -0.0258277, -0.0999901, 0.110325, -0.988851, 0.194191, 1.40509, -2.16077)
 
@@ -3442,3 +3444,10 @@ parameters/looping = true
 
 [node name="JumpSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_75vfm")
+volume_db = 32.15
+
+[node name="BGMusic" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_qek5x")
+volume_db = -7.619
+autoplay = true
+parameters/looping = true

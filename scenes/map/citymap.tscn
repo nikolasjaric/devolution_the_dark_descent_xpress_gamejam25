@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c56iwm44mtrs1" path="res://assets/under.png" id="6_ep5ws"]
 [ext_resource type="Script" uid="uid://b40bjs7ayesji" path="res://scripts/ui_scripts/health_texprogbar.gd" id="6_taraj"]
 [ext_resource type="Texture2D" uid="uid://8ja55yp02vhg" path="res://assets/progress.png" id="7_kka65"]
-[ext_resource type="Script" uid="uid://cso4dmei20u3y" path="res://scenes/map/evolution.gd" id="8_fvupy"]
+[ext_resource type="Script" path="res://scenes/map/evolution.gd" id="8_fvupy"]
 [ext_resource type="Texture2D" uid="uid://da0oq82xsbg55" path="res://assets/textures/ui/demon/base.png" id="8_xi51p"]
 [ext_resource type="Texture2D" uid="uid://e38m2friqcvl" path="res://assets/textures/ui/demon/heads.png" id="9_p6a3n"]
 [ext_resource type="Texture2D" uid="uid://c5erct2iei1s7" path="res://assets/textures/ui/demon/bar.png" id="10_fvupy"]
