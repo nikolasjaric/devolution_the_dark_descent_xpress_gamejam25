@@ -37,7 +37,7 @@ func _process(delta):
 		
 		#bullet.bullet_direction = -get_global_transform().basis.z
 		#bullet.bullet_direction = shoot_position.global_transform.basis.z.normalized()
-		bullet.bullet_direction = -shoot_position.global_transform.basis.z.normalized()
+		bullet.bullet_direction = shoot_position.global_transform.basis.z.normalized()
 
 		
 		print("Direction: ", bullet.bullet_direction)
