@@ -5,6 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://d0ukccn065ir0" path="res://scenes/prefabs/bullet.tscn" id="3_gmlin"]
 [ext_resource type="Texture2D" uid="uid://bxjg8wp6wheuy" path="res://assets/muzzle.png" id="4_lvxji"]
 [ext_resource type="Texture2D" uid="uid://dhrp5aedjuj5v" path="res://assets/models/char/char_char-1.png" id="5_p47bc"]
+[ext_resource type="AudioStream" uid="uid://b3ru677lgcgvf" path="res://audio/hod_korak_1.mp3" id="5_p47bc"]
+[ext_resource type="AudioStream" uid="uid://dnppxopag3ejy" path="res://audio/skok_sustanje.mp3" id="6_75vfm"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_a2pkv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ph54e"]
 
@@ -3431,3 +3435,10 @@ omni_range = 4.01425
 libraries = {
 &"": SubResource("AnimationLibrary_l8lik")
 }
+
+[node name="Footsteps" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_p47bc")
+parameters/looping = true
+
+[node name="JumpSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_75vfm")

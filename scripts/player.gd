@@ -13,11 +13,17 @@ var camera : Camera3D = $CameraPivot/SpringArm3D/Camera3D
 
 @onready
 var animation = $Character/AnimationPlayer
+
+@onready var walking_audio_player = $Footsteps 
+
+@onready var jump_audio_player = $JumpSound
+
 const JUMP_VELOCITY = 4.5
 
 var gravity = ProjectSettings.get_setting("physics(3d/default_gravity")
 
 var is_alive : bool = true
+var was_on_floor_prev_frame = true # Add this new variable. Initialize to true as player starts on ground.
 
 func get_mouse_position_on_y0_plane():
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -39,6 +45,7 @@ func _process(delta):
 		#$Character.rotation.x += deg_to_rad(90)
 		#$Character.rotation.y += deg_to_rad(180)
 
+
 func _physics_process(delta):
 	
 	if !is_alive:
@@ -47,10 +54,19 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
+		walking_audio_player.stop()
+		
+	
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		# Play the jump sound ONLY when the jump input is received AND on the floor
+		if jump_audio_player: # Basic check to make sure the node exists (good practice)
+			jump_audio_player.play(0.5)
+		
+		if walking_audio_player.playing:
+			walking_audio_player.stop()
+		# Stop walking audio immediately when jumping
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -78,6 +94,13 @@ func _physics_process(delta):
 		animation.play("idle")
 
 	move_and_slide()
+	
+	if velocity.length() > 0.1: # Check if player is moving
+			if not walking_audio_player.playing: # CONDITION A
+				walking_audio_player.play()
+	else:
+		walking_audio_player.stop()
+	
 	
 	
 	#var mouse_pos = get_viewport().get_mouse_position()
