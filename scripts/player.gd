@@ -7,6 +7,8 @@ signal healthChanged
 @export var maxHealth := 100
 var currentHealth := maxHealth
 
+signal satanChanged
+var satanLevel = 0
 
 @onready
 var camera : Camera3D = $CameraPivot/SpringArm3D/Camera3D
@@ -45,6 +47,10 @@ func _process(delta):
 		$Character.look_at(point_on_plane);
 		#$Character.rotation.x += deg_to_rad(90)
 		#$Character.rotation.y += deg_to_rad(180)
+	if Input.is_action_just_pressed("2"):
+		take_damage(10);
+	if Input.is_action_just_pressed("1"):
+		gain_satan(5);
 
 
 func _physics_process(delta):
@@ -121,11 +127,13 @@ func _physics_process(delta):
 			#target_position.y += 1.0  # Adjust this value to point 1 meter above the hit point
 			#$Armature_003.look_at(target_position)
 			
-	
+func gain_satan(amount: int):
+	satanLevel += amount;
+	emit_signal("satanChanged", satanLevel)
 	
 func take_damage(amount: int) -> void:
 	currentHealth = max(currentHealth - amount, 0)
-	emit_signal("healthChanged")
+	emit_signal("healthChanged", currentHealth)
 	if currentHealth == 0:
 		die()
 		

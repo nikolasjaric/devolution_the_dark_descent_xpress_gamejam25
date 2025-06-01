@@ -1,8 +1,5 @@
 extends Node2D
 
-func _on_timer_timeout() -> void:
-	$EvolutionProgressBar.value += 1;
-
 @onready var bar = $EvolutionProgressBar
 @onready var icon = $Cursor
 
@@ -23,3 +20,7 @@ func _process(delta):
 
 	icon.global_position = Vector2(icon_x, icon_y)
 	
+
+
+func _on_player_satan_changed(level) -> void:
+	$EvolutionProgressBar.value = level;
